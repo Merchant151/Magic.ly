@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class JW_PLayerController : MonoBehaviour {
     float speed = 5;
-    //My Components
+    public Vector2 throwForce = new Vector2(3,4);
+
+
     Rigidbody2D myBod;
     SpriteRenderer mySprite;
     Animator myAnim;
@@ -13,6 +15,7 @@ public class JW_PLayerController : MonoBehaviour {
         myBod = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
         myAnim = GetComponent<Animator>();
+        
 	}
 	
 	// Update is called once per frame
@@ -24,16 +27,20 @@ public class JW_PLayerController : MonoBehaviour {
         if (h > 0)
         {
             mySprite.flipX = false;
-            myAnim.SetBool("IsRunning", true);
+            myAnim.SetBool("isWalking", true);
         }
         else if (h < 0)
         {
             mySprite.flipX = true;
-            myAnim.SetBool("IsRunning", true);
+            myAnim.SetBool("isWalking", true);
         }
         else
         {
-            myAnim.SetBool("IsRunning", false);
+            myAnim.SetBool("isWalking", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)){
+            myBod.velocity = Vector2.up * speed;
         }
 	}
     public void changeSpeed (float f)
