@@ -15,8 +15,12 @@ public class Potion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bool direction = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX;
+        float m = -1f;
+        if (direction == false)
+            m = 1f;
         body = GetComponent<Rigidbody2D>();
-        body.AddForce(GameObject.FindGameObjectWithTag("Player").GetComponent<JW_PLayerController>().throwForce, ForceMode2D.Impulse);
+        body.AddForce(GameObject.FindGameObjectWithTag("Player").GetComponent<JW_PLayerController>().throwForce*new Vector3(m,1,0), ForceMode2D.Impulse);
        /* Vector3 local = transform.position;
         curAngD = 90.0f;
         curAngR = curAngD / 180 * Mathf.PI;

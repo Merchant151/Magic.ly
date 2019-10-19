@@ -7,6 +7,8 @@ public class PotCounter : MonoBehaviour {
     public int startCount;
     int count;
     public KeyCode key;
+    public GameObject myPrefab;
+
 
     //My Components
     Text myText;
@@ -39,6 +41,11 @@ public class PotCounter : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(key)&&count>=1)
         {
+            bool direction = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX;
+            float m = -1f;
+            if (direction == false)
+                m = 1f;
+            Instantiate(myPrefab, GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position+(new Vector3(1,0,0)*m), Quaternion.identity);
             consume();
         }
 	}
