@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class JW_PLayerController : MonoBehaviour {
     float speed = 5;
@@ -40,11 +41,19 @@ public class JW_PLayerController : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Space)){
-            myBod.velocity = Vector2.up * speed;
+            myBod.velocity = Vector2.up * 3.5f;
         }
-	}
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
+    }
     public void changeSpeed (float f)
     {
         speed += f;
     }
+
+    
 }

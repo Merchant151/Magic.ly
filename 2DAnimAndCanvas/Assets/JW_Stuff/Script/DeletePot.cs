@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeletePot : MonoBehaviour
 {
@@ -23,6 +24,17 @@ public class DeletePot : MonoBehaviour
         {
             Destroy(obj.gameObject);
         }
-        print("delete");
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "LevelTwo")
+        {
+            SceneManager.LoadScene("LevelTwo");
+        }
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "LevelThree")
+        {
+            SceneManager.LoadScene("LevelThree");
+        }
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "End")
+        {
+            SceneManager.LoadScene("End");
+        }
     }
 }

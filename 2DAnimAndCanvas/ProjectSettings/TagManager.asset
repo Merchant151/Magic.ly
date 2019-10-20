@@ -5,6 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - CanMove
+  - NextLevel
+  - LevelTwo
+  - LevelThree
+  - End
+  - Collectable
+  - PCollect
+  - UCollect
+  - YCollect
+  - GCollect
+  - NCollect
   layers:
   - Default
   - TransparentFX

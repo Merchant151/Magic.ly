@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RightPot : MonoBehaviour
 {
@@ -24,12 +25,23 @@ public class RightPot : MonoBehaviour
             Vector2 newPosition = obj.gameObject.transform.position;
             newPosition += new Vector2(1.3f, 0);
             obj.gameObject.transform.position = newPosition;
-            print("transport suc");
+            
 
             rb = obj.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
         }
-        print("freeze");
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "LevelTwo")
+        {
+            SceneManager.LoadScene("LevelTwo");
+        }
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "LevelThree")
+        {
+            SceneManager.LoadScene("LevelThree");
+        }
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "End")
+        {
+            SceneManager.LoadScene("End");
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RotatePotion : MonoBehaviour
 {
@@ -23,11 +24,21 @@ public class RotatePotion : MonoBehaviour
             Vector3 newRotation = obj.gameObject.transform.position;
             obj.transform.eulerAngles = Vector3.forward * 90;
             obj.gameObject.transform.position = newRotation;
-            print("transport suc");
 
-            //rb = obj.GetComponent<Rigidbody2D>();
-            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb = obj.GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        //print("freeze");
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "LevelTwo")
+        {
+            SceneManager.LoadScene("LevelTwo");
+        }
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "LevelThree")
+        {
+            SceneManager.LoadScene("LevelThree");
+        }
+        if (obj.gameObject.GetComponent<Collider2D>().tag == "End")
+        {
+            SceneManager.LoadScene("End");
+        }
     }
 }

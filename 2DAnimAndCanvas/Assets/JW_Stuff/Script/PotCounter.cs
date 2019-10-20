@@ -8,10 +8,11 @@ public class PotCounter : MonoBehaviour {
     int count;
     public KeyCode key;
     public GameObject myPrefab;
+    //public GameObject collectable;
+    GameObject[] collectables;
 
-
-    //My Components
-    Text myText;
+   //My Components
+   Text myText;
     Button myButton;
 
 	// Use this for initialization
@@ -22,6 +23,7 @@ public class PotCounter : MonoBehaviour {
         //key = KeyCode.Alpha0;
 
 	}
+   
 	
     void setCount (int c)
     {
@@ -47,6 +49,26 @@ public class PotCounter : MonoBehaviour {
                 m = 1f;
             Instantiate(myPrefab, GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position+(new Vector3(1,0,0)*m), Quaternion.identity);
             consume();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            float Px = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position.x;
+            float Py = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position.y;
+            collectables = GameObject.FindGameObjectsWithTag(myPrefab.tag); 
+            Debug.Log("E was pressed");
+            foreach(GameObject collectable in collectables)
+            {
+                float Cx = collectable.GetComponent<Transform>().position.x;
+                float Cy = collectable.GetComponent<Transform>().position.y;
+                if(Mathf.Abs(Px-Cx) <= 0.3 && Py-Cy <= 0.9)
+                {
+                    Debug.Log("count"+count);
+                    setCount(count+1);
+                    Debug.Log("cur count" + count);
+                    myButton.interactable = true;
+                    Destroy(collectable);
+                }
+            }
         }
 	}
 }

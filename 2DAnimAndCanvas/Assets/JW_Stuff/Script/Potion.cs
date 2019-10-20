@@ -9,6 +9,7 @@ public class Potion : MonoBehaviour
     //float curAngR;
     //Vector3 step;
     Rigidbody2D body;
+    public GameObject explosion;
     
     
 
@@ -28,10 +29,17 @@ public class Potion : MonoBehaviour
         step = dest * Time.deltaTime;
         */
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Instantiate(explosion, GetComponent<Transform>().position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+ 
+ 
     // Update is called once per frame
     void Update()
     {   
+
         /*
         transform.position += step;
         curAngD = curAngD - 1.0f;
