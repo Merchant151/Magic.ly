@@ -19,7 +19,7 @@ public class PotCounter : MonoBehaviour {
 	void Start () {
         myText = GetComponentInChildren<Text>();
         myButton = GetComponent<Button>();
-        setCount(startCount);
+        setCount(0);
         //key = KeyCode.Alpha0;
 
 	}
@@ -60,7 +60,7 @@ public class PotCounter : MonoBehaviour {
             {
                 float Cx = collectable.GetComponent<Transform>().position.x;
                 float Cy = collectable.GetComponent<Transform>().position.y;
-                if(Mathf.Abs(Px-Cx) <= 0.3 && Py-Cy <= 0.9)
+                if(Mathf.Abs(Px-Cx) <= 0.35 && Py-Cy <= 1.5)
                 {
                     Debug.Log("count"+count);
                     setCount(count+1);
